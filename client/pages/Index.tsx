@@ -8,497 +8,939 @@ import {
   Minus,
   Info,
 } from "lucide-react";
+import Spline from '@splinetool/react-spline';
+import { RevealOnScroll, StaggeredReveal, ScaleOnScroll } from '../components/animations/RevealOnScroll';
 
 export default function Index() {
   const [activeService, setActiveService] = useState(0);
   const [activeFaq, setActiveFaq] = useState(-1);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const partners = [
-    { name: "p1", image: "/Untitled-design-2024-09-27T040509.140.png" },
-    { name: "p2", image: "/New-Project-2024-10-02T175135.156.png" },
-    { name: "p3", image: "/istockphoto-135385164-612x612.webp" },
-    { name: "p4", image: "/istockphoto-1193079433-612x612.webp" },
-    { name: "p5", image: "/Untitled-design-2024-09-27T040509.140.png" },
-    { name: "p6", image: "/New-Project-2024-10-02T175135.156.png" },
+    { name: "p1", image: "/kobu-agency-7okkFhxrxNw-unsplash-1024x683.jpg" },
+    { name: "p2", image: "/guillaume-techer-XvNPUh6fWVk-unsplash-1024x683.jpg" },
+    { name: "p3", image: "/peter-zhou-LUeUUFLGgnY-unsplash.jpg" },
+    { name: "p4", image: "/kobu-agency-7okkFhxrxNw-unsplash-1024x683.jpg" },
+    { name: "p5", image: "/guillaume-techer-XvNPUh6fWVk-unsplash-1024x683.jpg" },
+    { name: "p6", image: "/peter-zhou-LUeUUFLGgnY-unsplash.jpg" },
   ];
 
   const portfolioItems = [
-    { title: "case1", image: "/Untitled-design-2024-09-27T040509.140.png" },
-    { title: "case2", image: "/New-Project-2024-10-02T175135.156.png" },
-    { title: "case3", image: "/istockphoto-135385164-612x612.webp" },
-    { title: "case4", image: "/istockphoto-1193079433-612x612.webp" },
-    { title: "case5", image: "/Untitled-design-2024-09-27T040509.140.png" },
+    { title: "case1", image: "/scott-blake-sXASnaWglyY-unsplash-1024x683.jpg" },
+    { title: "case2", image: "/airfocus-K_VeavYEfdA-unsplash-1024x683.jpg" },
+    { title: "case3", image: "/kate-townsend-hEC6zxdFF0M-unsplash-1024x680.jpg" },
+    { title: "case4", image: "/maxime-agnelli-QC1oHW5JVu4-unsplash-1024x683.jpg" },
+    { title: "case5", image: "/guillaume-techer-XvNPUh6fWVk-unsplash-1024x683.jpg" },
   ];
 
-  // Compliance-led mobilisation timeline for the orange card
-  const steps = [
+  // Interactive HR Services Journey
+  const hrJourney = [
     {
-      title: "Scope & Compliance",
-      desc:
-        "Define scope, stakeholders and governance. Prepare RAMS and permits.",
+      id: "discover",
+      title: "Discover",
+      subtitle: "Understanding Your Vision",
+      desc: "We dive deep into your organizational culture, business goals, and specific HR challenges to create a tailored roadmap for success.",
+      icon: (
+        <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      ),
+      color: "from-yellow-500 via-yellow-600 to-yellow-700",
+      features: ["Culture Analysis", "Gap Assessment", "Strategic Planning"]
     },
     {
-      title: "Mobilise",
-      desc:
-        "Crew allocation, crate delivery and equipment scheduling.",
+      id: "connect",
+      title: "Connect",
+      subtitle: "Building Your Dream Team",
+      desc: "Our AI-powered platform and expert recruiters identify, evaluate, and connect you with top-tier talent across multiple industries.",
+      icon: (
+        <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      ),
+      color: "from-yellow-600 via-yellow-700 to-yellow-800",
+      features: ["Smart Matching", "Candidate Screening", "Interview Coordination"]
     },
     {
-      title: "Execute & Handover",
-      desc:
-        "Out‑of‑hours execution in live environments and phased handover.",
-    },
+      id: "grow",
+      title: "Grow",
+      subtitle: "Empowering Excellence",
+      desc: "We provide ongoing support through training programs, performance optimization, and strategic HR consulting to ensure long-term success.",
+      icon: (
+        <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      color: "from-yellow-700 via-yellow-800 to-yellow-900",
+      features: ["Training Programs", "Performance Management", "Strategic Consulting"]
+    }
   ];
-  const [activeStep, setActiveStep] = useState(0);
+  
+  const [activeJourney, setActiveJourney] = useState(0);
+  const [hoveredJourney, setHoveredJourney] = useState(null);
 
   const services = [
     {
-      title: "Scope & Compliance Planning",
+      title: "Recruitment Services",
       content:
-        "RAMS, permits, site rules and stakeholder mapping aligned to your governance requirements.",
+        "Expert talent acquisition across retail, hospitality, engineering, and professional services sectors.",
     },
     {
-      title: "Project Management",
+      title: "Employee Outsourcing",
       content:
-        "Dedicated coordinator, phased plans and clear comms to minimise downtime and risk.",
+        "Comprehensive HR outsourcing including payroll, benefits administration, and workforce management.",
     },
     {
-      title: "Specialist Crews & Equipment",
+      title: "Training & Development",
       content:
-        "Trained teams with lifting gear, protection materials and vehicles for any scale.",
+        "Customized training programs to enhance employee skills, performance, and career development.",
     },
     {
-      title: "Out‑of‑Hours & Live Environments",
+      title: "HR Consulting",
       content:
-        "Evening/weekend working and live ward/site protocols to avoid service disruption.",
+        "Strategic HR consulting to optimize your human resources processes and organizational policies.",
     },
     {
-      title: "Sustainable Clearance & Reporting",
+      title: "Job Placement Services",
       content:
-        "Licensed waste handling with reuse/recycling focus and compliance audit trails.",
+        "Dedicated job search support with resume building, interview preparation, and career guidance.",
     },
   ];
 
   const faqs = [
     {
-      question: "Do you operate nationwide?",
+      question: "What industries do you serve?",
       answer:
-        "Yes. We operate nationwide. Share your locations and timelines and we’ll provide a tailored plan and quote.",
+        "We serve a wide range of industries including retail, hospitality, engineering, healthcare, and professional services across Malta and UAE.",
     },
     {
-      question: "Can you provide packing and materials?",
+      question: "Do you provide training services?",
       answer:
-        "Absolutely. We offer full or part packing and can supply boxes, bubble wrap, wardrobe cartons and covers.",
+        "Yes. We offer comprehensive training and development programs to enhance employee skills and performance across various sectors.",
     },
     {
-      question: "Are you insured?",
+      question: "Are you certified?",
       answer:
-        "Yes. We carry comprehensive goods‑in‑transit and public liability insurance. Details available on request.",
+        "Yes. We are a C 76838 certified company established in 2016, providing trusted HR solutions with full compliance and professional standards.",
     },
     {
-      question: "Are you a licensed waste carrier?",
+      question: "Do you operate in multiple locations?",
       answer:
-        "Yes. We are licensed to remove and dispose of waste responsibly, with a strong focus on recycling.",
+        "Yes. We have offices in Malta and UAE, providing HR services and job opportunities across both regions.",
     },
     {
-      question: "How is pricing calculated?",
+      question: "How do you match candidates to jobs?",
       answer:
-        "Pricing depends on volume, distance, access/parking and any packing or special handling. We’ll provide an itemised quote.",
+        "We use a comprehensive assessment process including skills evaluation, experience matching, and cultural fit analysis to ensure the best placements.",
     },
     {
-      question: "Do you handle single items or small moves?",
+      question: "What types of jobs do you offer?",
       answer:
-        "Yes. From single‑item deliveries to student moves, we tailor the service to your needs.",
+        "We offer diverse opportunities from entry-level positions to executive roles across retail, hospitality, engineering, and professional services.",
     },
   ];
 
   return (
     <div>
-      {/* Hero Section */}
-      <section
-        className="relative h-screen flex items-end"
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.85) 100%), url('/Gemini_Generated_Image_dfkm99dfkm99dfkm.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="container mx-auto px-6 sm:px-8 lg:px-16 pb-16 sm:pb-20">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-medium leading-tight mb-6 text-white">
-              Specialist B2B Removals & Logistics
-            </h1>
+      {/* Spacer to push content below fixed hero */}
+      <div style={{ height: '100vh' }}></div>
+      
+      {/* Hero Section - Fixed Position */}
+      <section className="fixed inset-0 h-screen flex items-center bg-black z-10">
+        <div className="absolute inset-0 flex flex-col lg:flex-row items-center">
+           {/* Left Side - Image with Hover Effect */}
+           <div 
+             className="w-full lg:w-3/5 h-1/2 lg:h-4/5 bg-black ml-0 relative overflow-hidden group cursor-pointer opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
+             style={{ 
+               marginTop: '2%',
+               animationDelay: '5.2s',
+               animation: 'fadeInRight 0.8s ease-out 5.2s forwards'
+             }}
+           >
+             {/* Background Image */}
+             <div 
+               className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+               style={{ backgroundImage: 'url(/adrian-kusznirewicz-8LUxHtQXix8-unsplash.jpg)' }}
+             />
+            {/* Overlay with gradient */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent transition-opacity duration-500 group-hover:opacity-70"></div>
             
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-4 text-white px-8 py-4 rounded-full transition-all duration-300 group"
-              style={{ backgroundColor: '#45c4af' }}
-            >
-              <span className="text-sm font-medium uppercase tracking-wide">
-                Request consultation
-              </span>
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                <ArrowRight className="w-6 h-6" style={{ color: '#45c4af' }} />
+            {/* Hover Overlay with Golden Glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+            
+            {/* Floating Elements on Hover */}
+            <div className="absolute top-8 left-8 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">
+              <div className="bg-yellow-500/90 text-black px-4 py-2 font-bold text-sm" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                ELITE NETWORK INTERNATIONAL
               </div>
-            </a>
+            </div>
+            
+            <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-300">
+              <div className="text-white text-right">
+                <div className="text-2xl font-bold text-yellow-500" style={{ fontFamily: 'Uni Sans, sans-serif' }}>500+</div>
+                <div className="text-sm text-white/80">Jobs Placed</div>
+              </div>
+            </div>
+          </div>
+          
+           {/* Right Side - Compact Content & Form */}
+           <div className="w-full lg:w-2/5 h-1/2 lg:h-4/5 flex flex-col justify-center px-4 lg:px-8" style={{ marginTop: '2%' }}>
+             {/* Main Content */}
+             <div className="mb-6">
+               <div 
+                 className="opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
+        style={{
+                   animationDelay: '5.5s',
+                   animation: 'fadeInLeft 0.8s ease-out 5.5s forwards'
+                 }}
+               >
+                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-4" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                   <span className="text-white">Your Gateway to</span>
+                   <span className="block text-yellow-500">Elite Careers</span>
+            </h1>
+               </div>
+               <div 
+                 className="opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
+                 style={{ 
+                   animationDelay: '5.7s',
+                   animation: 'fadeInLeft 0.8s ease-out 5.7s forwards'
+                 }}
+               >
+                 <p className="text-sm sm:text-base text-white/80 leading-relaxed mb-4">
+                   Connecting exceptional talent with premier opportunities across Malta and UAE.
+                 </p>
+               </div>
+              
+               {/* Key Points */}
+               <div className="space-y-2 mb-4">
+                 <div 
+                   className="opacity-0 transform translate-x-8 transition-all duration-600 ease-out"
+                   style={{ 
+                     animationDelay: '5.9s',
+                     animation: 'fadeInLeft 0.6s ease-out 5.9s forwards'
+                   }}
+                 >
+                   <div className="flex items-center gap-3">
+                     <svg className="w-4 h-4 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                     </svg>
+                     <span className="text-sm sm:text-base text-white/90" style={{ fontFamily: 'Uni Sans, sans-serif' }}>Comprehensive HR Solutions</span>
+                   </div>
+                 </div>
+                 <div 
+                   className="opacity-0 transform translate-x-8 transition-all duration-600 ease-out"
+                   style={{ 
+                     animationDelay: '6.1s',
+                     animation: 'fadeInLeft 0.6s ease-out 6.1s forwards'
+                   }}
+                 >
+                   <div className="flex items-center gap-3">
+                     <svg className="w-4 h-4 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                     </svg>
+                     <span className="text-sm sm:text-base text-white/90" style={{ fontFamily: 'Uni Sans, sans-serif' }}>Expert Talent Acquisition</span>
+                   </div>
+                 </div>
+                 <div 
+                   className="opacity-0 transform translate-x-8 transition-all duration-600 ease-out"
+                   style={{ 
+                     animationDelay: '6.3s',
+                     animation: 'fadeInLeft 0.6s ease-out 6.3s forwards'
+                   }}
+                 >
+                   <div className="flex items-center gap-3">
+                     <svg className="w-4 h-4 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                     </svg>
+                     <span className="text-sm sm:text-base text-white/90" style={{ fontFamily: 'Uni Sans, sans-serif' }}>Malta & UAE Coverage</span>
+                   </div>
+                 </div>
+               </div>
+            </div>
+            
+             {/* Minimalistic Form */}
+             <div 
+               className="opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
+               style={{ 
+                 animationDelay: '6.5s',
+                 animation: 'fadeInLeft 0.8s ease-out 6.5s forwards'
+               }}
+             >
+               <div className="bg-black p-4 sm:p-6 border border-white">
+                 <h3 className="text-base sm:text-lg font-bold text-white mb-4" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                   Get Started
+                 </h3>
+                 <form className="space-y-3 sm:space-y-4">
+                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                     <input
+                       type="text"
+                       placeholder="First Name"
+                       className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-black border border-white text-white placeholder-white focus:outline-none focus:border-yellow-500 transition-colors text-sm"
+                     />
+                     <input
+                       type="text"
+                       placeholder="Last Name"
+                       className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-black border border-white text-white placeholder-white focus:outline-none focus:border-yellow-500 transition-colors text-sm"
+                     />
+                   </div>
+                   <input
+                     type="email"
+                     placeholder="Email"
+                     className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-black border border-white text-white placeholder-white focus:outline-none focus:border-yellow-500 transition-colors text-sm"
+                   />
+                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                     <select className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-black border border-white text-white focus:outline-none focus:border-yellow-500 transition-colors text-sm">
+                       <option value="">I'm a...</option>
+                       <option>Job Seeker</option>
+                       <option>Employer</option>
+                     </select>
+                     <select className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-black border border-white text-white focus:outline-none focus:border-yellow-500 transition-colors text-sm">
+                       <option value="">Location</option>
+                       <option>Malta</option>
+                       <option>UAE</option>
+                     </select>
+                   </div>
+                   <button
+                     type="submit"
+                     className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-black border-2 border-yellow-500 text-yellow-500 font-bold uppercase tracking-wide hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300 text-sm"
+                   >
+                     Start Your Journey
+                   </button>
+                 </form>
+               </div>
+              </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="bg-white py-20 sm:py-24 lg:py-32">
+       {/* Services Section - Scrolls over hero */}
+       <section className="relative bg-black py-20 sm:py-24 lg:py-32 z-20">
         <div className="container mx-auto px-6 sm:px-8 lg:px-16">
+           <RevealOnScroll direction="up" delay={200} duration={800}>
           <div className="max-w-2xl mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight mb-6">
-              <span className="text-lufte-gray-dark">Compliance‑Led </span>
-              <span style={{ color: '#45c4af' }}>Mobilisations & Moves</span>
+               <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight mb-6" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                 <span className="text-white">Comprehensive </span>
+                 <span className="text-yellow-500">HR Solutions</span>
             </h2>
+               <p className="text-lg text-gray-300 leading-relaxed">
+                 At ENI, we understand the critical importance of human resources in driving the success of organizations. 
+                 As a premier provider of HR solutions and job services, we offer innovative and tailored solutions for 
+                 recruitment, talent management, training, and consulting.
+               </p>
+             </div>
+           </RevealOnScroll>
+
+           {/* Interactive HR Journey Cards */}
+           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+             {hrJourney.map((journey, index) => {
+              const isActive = activeJourney === index;
+              const isHovered = hoveredJourney === index;
+              
+              return (
+                <RevealOnScroll key={journey.id} direction="up" delay={400 + (index * 200)} duration={800}>
+                  <div
+                    className={`group relative overflow-hidden transition-all duration-700 cursor-pointer ${
+                      isActive ? 'lg:scale-105' : 'lg:scale-100'
+                    } ${isHovered ? 'lg:scale-102' : ''}`}
+                    onClick={() => setActiveJourney(index)}
+                    onMouseEnter={() => setHoveredJourney(index)}
+                    onMouseLeave={() => setHoveredJourney(null)}
+                  >
+                  {/* Card Background */}
+                  <div className={`relative bg-black border-2 border-yellow-500 p-8 lg:p-10 min-h-[400px] lg:min-h-[450px] transition-all duration-500 ${
+                    isActive ? 'shadow-2xl shadow-yellow-500/30' : 'shadow-lg shadow-yellow-500/20'
+                  }`}>
+                    
+                    {/* Animated Background Pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="absolute top-4 right-4 w-32 h-32 bg-yellow-500/20 transform rotate-45 transition-transform duration-1000 group-hover:rotate-90"></div>
+                      <div className="absolute bottom-4 left-4 w-24 h-24 bg-yellow-500/20 transform -rotate-45 transition-transform duration-1000 group-hover:-rotate-90"></div>
           </div>
 
-          <div className="bg-[#45c4af] rounded-3xl p-6 sm:p-8 lg:p-12 relative overflow-hidden min-h-[360px] lg:min-h-[420px]">
-            <div className="flex flex-col justify-center h-full">
-              <div className="max-w-3xl">
-                <h4 className="text-2xl lg:text-3xl text-lufte-gray-dark mb-2">
-                  {steps[activeStep].title}
+                    {/* Content */}
+                    <div className="relative z-10 flex flex-col h-full">
+                      {/* Icon & Title */}
+                      <div className="mb-6">
+                        <div className="mb-4 transform transition-transform duration-500 group-hover:scale-110">
+                          {journey.icon}
+                        </div>
+                        <h4 className="text-2xl lg:text-3xl font-bold text-white mb-2" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                          {journey.title}
                 </h4>
-                <p className="text-lg lg:text-xl text-lufte-gray-dark/80 font-light leading-relaxed">
-                  {steps[activeStep].desc}
+                        <p className="text-lg text-white/90 font-medium">
+                          {journey.subtitle}
                 </p>
               </div>
 
-              {/* Timeline */}
-              <div className="relative mt-6 lg:mt-8 h-32">
-                {/* Base line (road) */}
-                <div className="absolute left-12 right-12 bottom-6 h-2 bg-black rounded-full" />
-
-                {/* Steps + labels */}
-                <div className="absolute left-12 right-12 bottom-[6px]">
-                  <div className="relative h-16">
-                    {steps.map((s, i) => {
-                      const percent = (i / (steps.length - 1)) * 100;
-                      const isActive = i === activeStep;
-                      const isCompleted = i <= activeStep;
-                      return (
-                        <div key={i} className="absolute bottom-[6px]" style={{ left: `calc(${percent}% - 12px)` }}>
-                          <button
-                            type="button"
-                            onClick={() => setActiveStep(i)}
-                            className={`w-6 h-6 rounded-full border-2 transition-colors duration-500 ${isCompleted ? "bg-black border-black" : "border-black/60"}`}
-                            style={!isCompleted ? { backgroundColor: '#45c4af' } : undefined}
-                            aria-label={s.title}
-                          />
-                          <div className="absolute left-1/2 -translate-x-1/2 top-6 w-44 text-center">
-                            <div className="inline-flex items-center gap-1 text-black/80 text-sm">
-                              <span className="whitespace-nowrap">{s.title}</span>
+                      {/* Description */}
+                      <div className="flex-1 mb-6">
+                        <p className="text-white/80 leading-relaxed text-base lg:text-lg">
+                          {journey.desc}
+                        </p>
                             </div>
+
+                      {/* Features */}
+                      <div className="space-y-3">
+                        {journey.features.map((feature, featureIndex) => (
+                          <div 
+                            key={featureIndex}
+                            className="flex items-center gap-3 text-white/90 text-sm lg:text-base"
+                          >
+                            <div className="w-2 h-2 bg-yellow-500/60 transform transition-all duration-300 group-hover:scale-125"></div>
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Active Indicator */}
+                      {isActive && (
+                        <div className="absolute top-4 right-4 w-3 h-3 bg-yellow-500 transform transition-all duration-500 animate-pulse"></div>
+                      )}
+                    </div>
+
+                    {/* Hover Effect Overlay */}
+                    <div className={`absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent transition-opacity duration-500 ${
+                      isHovered ? 'opacity-100' : 'opacity-0'
+                    }`}></div>
                           </div>
                         </div>
+                </RevealOnScroll>
                       );
                     })}
+           </div>
+
+           {/* Journey Navigation */}
+           <RevealOnScroll direction="fade" delay={800} duration={600}>
+             <div className="mt-8 flex items-center justify-center gap-4">
+               {hrJourney.map((_, index) => (
+                 <button
+                   key={index}
+                   onClick={() => setActiveJourney(index)}
+                   className={`w-4 h-4 transition-all duration-300 ${
+                     index === activeJourney 
+                       ? 'bg-yellow-500 scale-125' 
+                       : 'bg-yellow-500/40 hover:bg-yellow-500/60'
+                   }`}
+                   aria-label={`Go to ${hrJourney[index].title} step`}
+                 />
+               ))}
+             </div>
+           </RevealOnScroll>
+         </div>
+       </section>
+
+       {/* Featured Jobs Section */}
+       <section className="relative bg-black py-20 z-20">
+         <div className="container mx-auto px-6 sm:px-8 lg:px-16">
+           {/* Malta Jobs */}
+           <RevealOnScroll direction="up" delay={200} duration={800}>
+             <div className="mb-16">
+               <h2 className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-12" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                 Featured Jobs In Malta
+               </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { title: "Welder", image: "/maxime-agnelli-QC1oHW5JVu4-unsplash-1024x683.jpg", location: "Malta", type: "Full-time" },
+                { title: "Waiter", image: "/kate-townsend-hEC6zxdFF0M-unsplash-1024x680.jpg", location: "Malta", type: "Part-time" },
+                { title: "Tower Crane Operator", image: "/guillaume-techer-XvNPUh6fWVk-unsplash-1024x683.jpg", location: "Malta", type: "Full-time" }
+              ].map((job, index) => (
+                <div key={index} className="group relative overflow-hidden bg-black border border-gray-800 hover:border-yellow-500/50 transition-all duration-500">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={job.image} 
+                      alt={job.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                        {job.title}
+                      </h3>
+                      <div className="flex items-center gap-4 text-white/80 text-sm">
+                        <span className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          {job.location}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          {job.type}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+               <div className="mt-8 text-center">
+                 <button className="px-8 py-4 bg-black border-2 border-yellow-500 text-yellow-500 font-bold uppercase tracking-wide hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300">
+                   All Jobs
+                 </button>
+               </div>
+             </div>
+           </RevealOnScroll>
 
-                {/* Moving truck */}
-                {(() => {
-                  const ratio = activeStep / (steps.length - 1);
-                  return (
-                    <img
-                      src="/delivery-van.png"
-                      alt="Delivery van"
-                      className="absolute w-24 h-24 object-contain drop-shadow pointer-events-none select-none"
-                      style={{
-                        bottom: "10px",
-                        left: `calc(3rem + (100% - 6rem) * ${ratio} - 63px)`,
-                        right: "auto",
-                        transition: "left 1000ms cubic-bezier(0.2, 0.8, 0.2, 1)",
-                        willChange: "left",
-                        transform: "translateZ(0)",
-                      }}
+          {/* UAE Jobs */}
+          <RevealOnScroll direction="up" delay={200} duration={800}>
+            <div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-12" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                Featured Jobs In UAE
+              </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { title: "Pre-contract Quantity Surveyor", image: "/scott-blake-sXASnaWglyY-unsplash-1024x683.jpg", location: "UAE", type: "Full-time" },
+                { title: "Planning Engineer", image: "/airfocus-K_VeavYEfdA-unsplash-1024x683.jpg", location: "UAE", type: "Full-time" },
+                { title: "Human Resources Assistant", image: "/kobu-agency-7okkFhxrxNw-unsplash-1024x683.jpg", location: "UAE", type: "Full-time" }
+              ].map((job, index) => (
+                <div key={index} className="group relative overflow-hidden bg-black border border-gray-800 hover:border-yellow-500/50 transition-all duration-500">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={job.image} 
+                      alt={job.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                  );
-                })()}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                        {job.title}
+                      </h3>
+                      <div className="flex items-center gap-4 text-white/80 text-sm">
+                        <span className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          {job.location}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          {job.type}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
               </div>
+              <div className="mt-8 text-center">
+                <button className="px-8 py-4 bg-black border-2 border-yellow-500 text-yellow-500 font-bold uppercase tracking-wide hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300">
+                  All Jobs
+                </button>
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
 
-              {/* Controls */}
-              <div className="mt-8 flex items-center gap-3">
-                <button
-                  type="button"
-                  aria-label="Previous step"
-                  className="w-12 h-12 border border-black/20 rounded-full flex items-center justify-center text-black hover:bg-black/5 transition-colors"
-                  onClick={() => setActiveStep((activeStep + steps.length - 1) % steps.length)}
-                >
-                  <ChevronLeft className="w-6 h-6" />
+      {/* About ENI Section */}
+      <section className="relative bg-black py-20 z-20">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <RevealOnScroll direction="left" delay={200} duration={800}>
+              <div>
+                <h2 className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-8" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                  About ENI
+                </h2>
+              <div className="space-y-6 text-gray-300 leading-relaxed">
+                <p className="text-lg">
+                  At ENI, we understand the critical importance of human resources in driving the success of organizations. 
+                  As a premier provider of HR solutions and job services, we offer innovative and tailored solutions for 
+                  recruitment, talent management, training, and consulting.
+                </p>
+                <p className="text-lg">
+                  Established in 2016, Elite Network International ENI has quickly emerged as a leading Recruitment and HR 
+                  service provider in Malta. As a C 76838 certified company, we provide innovative and tailored solutions 
+                  for recruitment, talent management, training, and consulting, building long-lasting partnerships based on 
+                  trust, integrity, and mutual respect.
+                </p>
+              </div>
+              <div className="mt-8">
+                <button className="px-8 py-4 bg-black border-2 border-yellow-500 text-yellow-500 font-bold uppercase tracking-wide hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300">
+                  Read More
                 </button>
-                <button
-                  type="button"
-                  aria-label="Next step"
-                  className="w-12 h-12 border border-black/20 rounded-full flex items-center justify-center text-black hover:bg-black/5 transition-colors"
-                  onClick={() => setActiveStep((activeStep + 1) % steps.length)}
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
+              </div>
+            </div>
+            </RevealOnScroll>
+            <RevealOnScroll direction="right" delay={400} duration={800}>
+              <div className="relative">
+                <img 
+                  src="/Gemini_Generated_Image_r057e4r057e4r057.png" 
+                  alt="About ENI"
+                  className="w-full h-96 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+            </RevealOnScroll>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Services Section */}
+      <section className="relative bg-black py-20 z-20">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-16">
+          <h2 className="text-4xl lg:text-5xl font-bold text-yellow-500 text-center mb-16" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+            Our Core Services
+            </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Services for Job Seekers */}
+            <div className="group relative overflow-hidden bg-black border border-gray-800 hover:border-yellow-500/50 transition-all duration-500">
+              <div className="relative h-80 overflow-hidden">
+                <img 
+                  src="/guillaume-techer-XvNPUh6fWVk-unsplash-1024x683.jpg" 
+                  alt="Job Seekers Services"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                <div className="absolute bottom-8 left-8 right-8 text-center">
+                  <h3 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                    Services For Job Seekers
+                  </h3>
+                  <p className="text-white/80 mb-6">
+                    Discover a wealth of resources to supercharge your job search journey. From comprehensive job boards 
+                    to industry-specific forums, our platform offers diverse opportunities.
+                  </p>
+                  <button className="px-6 py-3 bg-black border-2 border-yellow-500 text-yellow-500 font-bold uppercase tracking-wide hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300">
+                    Read More
+                  </button>
+                </div>
+              </div>
+          </div>
+
+            {/* Services for Employers */}
+            <div className="group relative overflow-hidden bg-black border border-gray-800 hover:border-yellow-500/50 transition-all duration-500">
+              <div className="relative h-80 overflow-hidden">
+                <img 
+                  src="/Gemini_Generated_Image_r057e4r057e4r057.png" 
+                  alt="Employers Services"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                <div className="absolute bottom-8 left-8 right-8 text-center">
+                  <h3 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                    Services For Employers
+                  </h3>
+                  <p className="text-white/80 mb-6">
+                    Our training and development services cover a range of essential areas to enhance employee skills 
+                    and performance across various industries and sectors.
+                  </p>
+                  <button className="px-6 py-3 bg-black border-2 border-yellow-500 text-yellow-500 font-bold uppercase tracking-wide hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300">
+                    Read More
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="bg-white py-12 sm:py-16 lg:py-20">
+      {/* Founder's Message Section */}
+      <section className="relative bg-black py-20 z-20">
         <div className="container mx-auto px-6 sm:px-8 lg:px-16">
-          <div className="max-w-3xl mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight mb-6">
-              <span className="text-lufte-gray-dark">Trusted by Healthcare </span>
-              <span style={{ color: '#45c4af' }}>& Enterprise Teams</span>
-            </h2>
-            <p className="text-lg lg:text-2xl text-lufte-gray-dark/60 font-light leading-relaxed">
-              Chosen for reliability, compliance and scalability. We operate in live environments
-              with zero‑downtime priorities and clear reporting.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {partners.map((partner, index) => (
-              <div
-                key={index}
-                className="aspect-[4/3] rounded-3xl overflow-hidden"
-              >
-                <img
-                  src={partner.image}
-                  alt={partner.name}
-                  className="w-full h-full object-cover"
-                />
+          <RevealOnScroll direction="up" delay={200} duration={800}>
+            <div className="bg-black border-2 border-yellow-500 p-12 lg:p-16">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+              {/* Founder Image */}
+              <div className="lg:col-span-1">
+                <div className="relative">
+                  <img 
+                    src="/aaaaa-6-1024x768.png" 
+                    alt="Mu Abusaada - Founder"
+                    className="w-full h-80 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
               </div>
+              
+              {/* Founder's Message */}
+              <div className="lg:col-span-2">
+                <h2 className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-8" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                  Founder's Message
+                </h2>
+                <div className="space-y-6 text-white leading-relaxed">
+                  <p className="text-lg">
+                    Transparency in networking is your key to hidden resources, the main tool for driving your brand 
+                    successfully opening resources and opportunities. For it is your transparency in presenting your 
+                    services, and demands.
+                  </p>
+                  <p className="text-lg">
+                    Our aim at ENI is clearly understanding our client's organization's recruitment needs and objectives, 
+                    including the desired skills and qualifications of the candidates they seek.
+                  </p>
+                  <p className="text-lg">
+                    Our mission at ENI is making the recruitment process unchallenging, straightforward, and beneficiary 
+                    through our headhunting and shortlisting candidates.
+                  </p>
+                </div>
+                <div className="mt-8 pt-6 border-t border-yellow-500/30">
+                  <h3 className="text-2xl font-bold text-yellow-500 mb-2" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                    Mu Abusaada
+                  </h3>
+                  <p className="text-white/80 text-lg">
+                    Founder, Chief Executive Officer
+                  </p>
+                </div>
+              </div>
+            </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+
+
+      {/* Testimonials Section */}
+      <section className="relative bg-black py-20 z-20">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-16">
+          <RevealOnScroll direction="up" delay={200} duration={800}>
+            <h2 className="text-4xl lg:text-5xl font-bold text-yellow-500 text-center mb-16" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+              What Our Clients Say
+            </h2>
+          </RevealOnScroll>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "John Camilleri",
+                company: "Mile-End Services Limited",
+                testimonial: "ENI has been instrumental in helping us find the right talent for our organization. Their recruitment process is thorough and their candidates are always well-qualified.",
+                rating: 5
+              },
+              {
+                name: "David Borg",
+                company: "Welbee's",
+                testimonial: "The team at ENI understands our business needs perfectly. They've consistently delivered excellent candidates who fit our company culture and requirements.",
+                rating: 5
+              },
+              {
+                name: "Kenneth Azzopardi",
+                company: "Finestral",
+                testimonial: "Professional, reliable, and results-driven. ENI has become our go-to partner for all HR and recruitment needs. Highly recommended!",
+                rating: 5
+              }
+            ].map((testimonial, index) => (
+              <RevealOnScroll key={index} direction="up" delay={400 + (index * 200)} duration={800}>
+                <div className="bg-black border-2 border-yellow-500 p-8 hover:bg-yellow-500/10 transition-all duration-500">
+                <div className="flex items-center mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-white/80 leading-relaxed mb-6 text-base">
+                  "{testimonial.testimonial}"
+                </p>
+                <div className="border-t border-gray-700/30 pt-4">
+                  <h4 className="text-white font-bold text-lg" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-yellow-500 text-sm">
+                    {testimonial.company}
+                  </p>
+                </div>
+                </div>
+              </RevealOnScroll>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Vision Statement Section */}
-      <section className="bg-white py-20 border-t border-b border-lufte-gray-dark/10">
+      {/* Company Stats Section */}
+      <section className="relative bg-black py-20 z-20">
         <div className="container mx-auto px-6 sm:px-8 lg:px-16">
-          <div className="text-center">
-            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight">
-              <span className="text-lufte-gray-dark">Every move handled with </span>
-              <span className="text-lufte-gray-dark">care, clarity and respect.</span>
-            </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { number: "500+", label: "Successful Placements" },
+              { number: "150+", label: "Happy Clients" },
+              { number: "8", label: "Years Experience" },
+              { number: "2", label: "Countries Served" }
+            ].map((stat, index) => (
+              <RevealOnScroll key={index} direction="up" delay={200 + (index * 150)} duration={800}>
+                <div className="group">
+                  <div className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-2" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                    {stat.number}
+                  </div>
+                  <div className="text-white/80 text-sm lg:text-base">
+                    {stat.label}
+                  </div>
+                </div>
+              </RevealOnScroll>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Why Nartov */}
-      <section className="bg-white py-12 sm:py-16 lg:py-20">
+
+      {/* Why Choose ENI */}
+      <section className="relative bg-black py-12 sm:py-16 lg:py-20 z-20">
         <div className="container mx-auto px-6 sm:px-8 lg:px-16">
+          <RevealOnScroll direction="up" delay={200} duration={800}>
           <div className="max-w-4xl mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight mb-6">
-              <span className="text-lufte-gray-dark">Why Choose </span>
-              <span style={{ color: '#45c4af' }}>Big Logistics</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight mb-6" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                <span className="text-white">Why Choose </span>
+                <span className="text-yellow-500">Elite Network International</span>
             </h2>
-            <p className="text-lg lg:text-2xl text-lufte-gray-dark/60 font-light leading-relaxed">
-              Over 10 years’ experience, friendly uniformed teams and transparent pricing. Local
+              <p className="text-lg lg:text-2xl text-gray-300 font-light leading-relaxed">
+                Over 10 years' experience, friendly uniformed teams and transparent pricing. Local
               or long‑distance, residential or commercial—we make your move straightforward.
             </p>
           </div>
+          </RevealOnScroll>
 
-          <div className="border border-lufte-gray-dark/10 rounded-3xl p-8">
+          <RevealOnScroll direction="up" delay={400} duration={800}>
+            <div className="border border-gray-700/10 p-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <RevealOnScroll direction="left" delay={600} duration={800}>
               <div className="p-8 flex flex-col items-start">
-                <h3 className="text-2xl lg:text-3xl font-normal text-lufte-gray-dark mb-4">
+                    <h3 className="text-2xl lg:text-3xl font-normal text-white mb-4" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
                   Experience
                 </h3>
-                <p className="text-lufte-gray-dark/60 leading-relaxed">
+                    <p className="text-white/60 leading-relaxed">
                   A decade of B2B relocations across the UK. Skilled teams who plan and execute.
                 </p>
               </div>
+                </RevealOnScroll>
+                <RevealOnScroll direction="up" delay={800} duration={800}>
               <div className="p-8 flex flex-col items-start border-l border-r border-lufte-gray-dark/10">
-                <h3 className="text-2xl lg:text-3xl font-normal text-lufte-gray-dark mb-4">
+                    <h3 className="text-2xl lg:text-3xl font-normal text-white mb-4" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
                   Care & Protection
                 </h3>
-                <p className="text-lufte-gray-dark/60 leading-relaxed">
+                    <p className="text-white/60 leading-relaxed">
                   Protective covers, secure packing and careful handling of fragile or bulky items.
                 </p>
               </div>
+                </RevealOnScroll>
+                <RevealOnScroll direction="right" delay={1000} duration={800}>
               <div className="p-8 flex flex-col items-start">
-                <h3 className="text-2xl lg:text-3xl font-normal text-lufte-gray-dark mb-4">
+                    <h3 className="text-2xl lg:text-3xl font-normal text-white mb-4" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
                   Fair, Transparent Pricing
                 </h3>
-                <p className="text-lufte-gray-dark/60 leading-relaxed">
+                    <p className="text-white/60 leading-relaxed">
                   Clear, itemised quotes with no hidden fees. Options for every budget and timeline.
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio Section */}
-      <section
-        className="relative h-screen overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.00) 35%), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 50%, #000 100%), url('/Untitled-design-2024-09-27T040509.140.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="container mx-auto px-16 h-full flex items-end pb-20">
-          <div className="flex flex-col md:flex-row justify-between md:items-end gap-8 w-full">
-            <div className="max-w-xl">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium text-white leading-tight mb-10 sm:mb-16">
-                Case Studies
-              </h2>
-              <div className="border-b border-lufte-gray-dark/10 pb-8 mb-8">
-                <h3 className="text-3xl lg:text-4xl font-medium text-white mb-6">
-                  NHS Ward Decant, UK
-                </h3>
-                <p className="text-lg lg:text-xl text-white/80 font-light leading-relaxed">
-                  Out‑of‑hours decant with infection control measures. Tracked assets and phased handover to minimise disruption.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-end gap-8">
-              <div className="flex gap-3">
-                <button className="w-12 h-12 md:w-14 md:h-14 border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors">
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button className="w-12 h-12 md:w-14 md:h-14 border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors">
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
-              <div className="flex gap-3">
-                <div className="w-3 h-1 bg-white rounded-full"></div>
-                <div className="w-1 h-1 bg-white/20 rounded-full"></div>
-                <div className="w-1 h-1 bg-white/20 rounded-full"></div>
-                <div className="w-1 h-1 bg-white/20 rounded-full"></div>
-                <div className="w-1 h-1 bg-white/20 rounded-full"></div>
-              </div>
-              <div className="flex gap-2.5 overflow-x-auto">
-                {portfolioItems.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 ${index === 0 ? "border-white" : "border-transparent"}`}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
                   </div>
-                ))}
+                </RevealOnScroll>
               </div>
             </div>
-          </div>
+          </RevealOnScroll>
         </div>
       </section>
 
-      {/* Services Accordion Section */}
-      <section className="bg-white py-20 border-b border-lufte-gray-dark/10">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-            <div>
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium text-lufte-gray-dark leading-tight mb-16">
-                Services
-              </h2>
-              <div className="space-y-0">
-                {services.map((service, index) => (
-                  <div
-                    key={index}
-                    className="border-b border-lufte-gray-dark/10"
-                  >
-                    <button
-                      onClick={() =>
-                        setActiveService(activeService === index ? -1 : index)
-                      }
-                      className="w-full py-7 flex items-center justify-between text-left hover:bg-gray-50/50 transition-colors"
-                    >
-                      <span className="text-2xl lg:text-3xl font-medium text-lufte-gray-dark">
-                        {service.title}
-                      </span>
-                      <div className="w-10 h-10 border border-lufte-gray-dark/20 rounded-full flex items-center justify-center">
-                        {activeService === index ? (
-                          <Minus className="w-3 h-3 text-lufte-gray-dark" />
-                        ) : (
-                          <Plus className="w-3 h-3 text-lufte-gray-dark" />
-                        )}
-                      </div>
-                    </button>
-                    {activeService === index && (
-                      <div className="pb-6 text-lufte-gray-dark/60 leading-relaxed">
-                        {service.content}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="lg:pl-16">
-              <img
-                src="/New-Project-2024-10-02T175135.156.png"
-                alt="Big Logistics team at work"
-                className="w-full h-64 sm:h-80 lg:h-[580px] object-cover rounded-3xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
-      <section className="bg-white py-12 sm:py-16 lg:py-20">
+      <section className="relative bg-black py-12 sm:py-16 lg:py-20 z-20">
         <div className="container mx-auto px-6 sm:px-8 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+            <RevealOnScroll direction="left" delay={200} duration={800}>
             <div>
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium text-lufte-gray-dark leading-tight">
+                <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium text-white leading-tight" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
                 Frequently Asked Questions
               </h2>
             </div>
+            </RevealOnScroll>
 
+            <RevealOnScroll direction="right" delay={400} duration={800}>
             <div className="space-y-0">
               {faqs.map((faq, index) => (
-                <div key={index} className="border-b border-lufte-gray-dark/10">
+                  <RevealOnScroll key={index} direction="up" delay={600 + (index * 100)} duration={600}>
+                    <div className="border-b border-lufte-gray-dark/10">
                   <button
                     onClick={() =>
                       setActiveFaq(activeFaq === index ? -1 : index)
                     }
                     className="w-full py-7 flex items-start justify-between text-left hover:bg-gray-50/50 transition-colors"
                   >
-                    <span className="text-lg lg:text-2xl font-medium text-lufte-gray-dark leading-tight pr-8">
+                        <span className="text-lg lg:text-2xl font-medium text-white leading-tight pr-8">
                       {faq.question}
                     </span>
-                    <div className="w-10 h-10 border border-lufte-gray-dark/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <div className="w-10 h-10 border border-lufte-gray-dark/20 flex items-center justify-center flex-shrink-0 mt-1">
                       {activeFaq === index ? (
-                        <Minus className="w-3 h-3 text-lufte-gray-dark" />
+                            <Minus className="w-3 h-3 text-white" />
                       ) : (
-                        <Plus className="w-3 h-3 text-lufte-gray-dark" />
+                            <Plus className="w-3 h-3 text-white" />
                       )}
                     </div>
                   </button>
                   {activeFaq === index && (
-                    <div className="pb-6 text-lufte-gray-dark/60 leading-relaxed pr-16">
+                        <div className="pb-6 text-white/60 leading-relaxed pr-16">
                       {faq.answer}
                     </div>
                   )}
                 </div>
+                  </RevealOnScroll>
               ))}
             </div>
+            </RevealOnScroll>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="bg-white pt-10">
-        <div className="border-t-[10px] bg-lufte-gray-medium" style={{ borderTopColor: '#45c4af' }}>
-          <div className="container mx-auto px-16 py-20">
+      {/* Get Started Section */}
+      <section className="relative bg-black py-20 z-20">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-16">
+          <RevealOnScroll direction="up" delay={200} duration={800}>
+            <div className="bg-black border-2 border-yellow-500 p-12 lg:p-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                {/* Left Side - Content */}
+                <RevealOnScroll direction="left" delay={400} duration={800}>
               <div>
-                <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium text-white leading-tight mb-8">
-                  Ready to mobilise? Request a consultation
+                    <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-yellow-500 leading-tight mb-8" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                      Ready to Transform Your HR?
                 </h2>
-                <p className="text-lg lg:text-xl text-white/60 font-light leading-relaxed">
-                  Share scope, sites, timelines and any compliance requirements. We’ll propose a phased plan.
+                <p className="text-lg lg:text-xl text-white/80 leading-relaxed mb-8">
+                  Let's discuss your HR challenges and create a tailored solution that drives your business forward. 
+                  Our experts are ready to help you build the perfect team.
                 </p>
-              </div>
+                
+                {/* Key Benefits */}
+                <div className="space-y-4 mb-8">
+                  {[
+                    "Free initial consultation",
+                    "Tailored HR solutions",
+                    "Expert recruitment support",
+                    "Ongoing partnership"
+                  ].map((benefit, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-yellow-500"></div>
+                      <span className="text-white/90">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
 
-              <div className="bg-neutral-800 rounded-3xl p-8">
+                {/* Contact Info */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 text-white/80">
+                    <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span>+356 79905609 | +356 27 211 811</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white/80">
+                    <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>info@eniclusters.com</span>
+                  </div>
+                </div>
+              </div>
+              </RevealOnScroll>
+
+              {/* Right Side - Form */}
+              <RevealOnScroll direction="right" delay={600} duration={800}>
+                <div className="bg-black/50 p-8 border border-gray-700/30">
+                  <h3 className="text-2xl font-bold text-white mb-6" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                    Get Started Today
+                  </h3>
                 <form className="space-y-6">
                   <input
                     type="text"
@@ -506,8 +948,8 @@ export default function Index() {
                     id="fullName"
                     autoComplete="name"
                     required
-                    placeholder="Full name *"
-                    className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/20"
+                    placeholder="Full Name *"
+                    className="w-full px-4 py-4 bg-white/5 border border-white/10 text-white placeholder-white/60 focus:outline-none focus:border-yellow-500/50 transition-colors"
                   />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -518,7 +960,7 @@ export default function Index() {
                       autoComplete="email"
                       required
                       placeholder="Email *"
-                      className="px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/20"
+                      className="px-4 py-4 bg-white/5 border border-white/10 text-white placeholder-white/60 focus:outline-none focus:border-yellow-500/50 transition-colors"
                     />
                     <input
                       type="tel"
@@ -527,33 +969,40 @@ export default function Index() {
                       autoComplete="tel"
                       required
                       placeholder="Phone *"
-                      className="px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/20"
+                      className="px-4 py-4 bg-white/5 border border-white/10 text-white placeholder-white/60 focus:outline-none focus:border-yellow-500/50 transition-colors"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      name="postcode"
-                      id="postcode"
-                      autoComplete="postal-code"
-                      required
-                      placeholder="Pickup postcode *"
-                      className="px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/20"
-                    />
+                    <div className="relative">
+                      <select
+                        id="serviceType"
+                        name="serviceType"
+                        defaultValue=""
+                        className="w-full px-4 py-4 bg-white/5 border border-white/10 text-white/60 focus:outline-none focus:border-yellow-500/50 transition-colors appearance-none"
+                      >
+                        <option value="" disabled>Service Type *</option>
+                        <option>Recruitment Services</option>
+                        <option>Employee Outsourcing</option>
+                        <option>Training & Development</option>
+                        <option>HR Consulting</option>
+                        <option>Job Placement</option>
+                        <option>Other</option>
+                      </select>
+                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-white/60 pointer-events-none" />
+                    </div>
                     <div className="relative">
                       <select
                         id="hearAbout"
                         name="hearAbout"
                         defaultValue=""
-                        className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white/60 focus:outline-none focus:border-white/20 appearance-none"
+                        className="w-full px-4 py-4 bg-white/5 border border-white/10 text-white/60 focus:outline-none focus:border-yellow-500/50 transition-colors appearance-none"
                       >
-                        <option value="" disabled>
-                          Where did you hear about us?
-                        </option>
-                        <option>Google</option>
-                        <option>Instagram</option>
-                        <option>Recommendation</option>
+                        <option value="" disabled>How did you hear about us?</option>
+                        <option>Google Search</option>
+                        <option>Social Media</option>
+                        <option>Referral</option>
+                        <option>Website</option>
                         <option>Other</option>
                       </select>
                       <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-white/60 pointer-events-none" />
@@ -563,41 +1012,35 @@ export default function Index() {
                   <div>
                     <input
                       type="text"
-                      name="projectType"
-                      id="projectType"
-                      required
-                      placeholder="Programme (e.g. ward decant, site fitout, DC reconfig) *"
-                      className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/20"
+                      name="companyName"
+                      id="companyName"
+                      placeholder="Company Name"
+                      className="w-full px-4 py-4 bg-white/5 border border-white/10 text-white placeholder-white/60 focus:outline-none focus:border-yellow-500/50 transition-colors"
                     />
-                    <div className="flex items-center gap-2 mt-2 text-white/40 text-sm">
-                      <Info className="w-4 h-4" />
-                      <span>
-                        Include dates, access, sensitive assets, RAMS/permit needs and reporting.
-                      </span>
-                    </div>
                   </div>
 
                   <div>
                     <textarea
                       name="message"
                       id="message"
-                      placeholder="Message"
+                      placeholder="Tell us about your HR needs and requirements..."
                       rows={4}
-                      className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-white/20 resize-none"
+                      className="w-full px-4 py-4 bg-white/5 border border-white/10 text-white placeholder-white/60 focus:outline-none focus:border-yellow-500/50 transition-colors resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="text-white px-8 py-3 rounded-full text-sm font-medium uppercase tracking-wide transition-colors"
-                    style={{ backgroundColor: '#45c4af' }}
+                    className="w-full px-8 py-4 bg-black border-2 border-yellow-500 text-yellow-500 font-bold uppercase tracking-wide hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300"
                   >
-                    Request consultation
+                    Get Started
                   </button>
                 </form>
               </div>
+              </RevealOnScroll>
             </div>
           </div>
+          </RevealOnScroll>
         </div>
       </section>
     </div>

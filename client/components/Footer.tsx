@@ -1,114 +1,136 @@
 import { NavLink } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, ArrowRight } from "lucide-react";
+import Spline from '@splinetool/react-spline';
 
 export default function Footer() {
-  const linkClass = "text-white/70 hover:text-white transition-colors";
+  const linkClass = "text-white/70 hover:text-yellow-500 transition-colors";
   return (
-    <footer className="bg-[#111] text-white border-t-8" style={{ borderTopColor: '#45c4af' }}>
-      <div className="container mx-auto px-6 sm:px-8 lg:px-16 py-14">
-        <div className="grid gap-10 md:gap-14 md:grid-cols-2 lg:grid-cols-4">
-          <div className="space-y-4">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-semibold tracking-tight">
-                Big Logistics
-              </span>
-              <span className="text-xs uppercase tracking-widest text-white px-2 py-0.5 rounded" style={{ backgroundColor: '#45c4af' }}>
-                B2B
+    <footer className="relative bg-black text-white border-t-8 z-20 overflow-hidden" style={{ borderTopColor: 'transparent', borderImage: 'linear-gradient(90deg, #eab308, #eab308, #eab308, #eab308) 1' }}>
+      {/* Spline Background */}
+      <div className="absolute inset-0 z-0">
+        <Spline scene="https://prod.spline.design/xGk1CBglFELWiAdA/scene.splinecode" />
+      </div>
+      
+      {/* Content Overlay */}
+      <div className="relative z-10 bg-black/20 backdrop-blur-sm">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-16 py-16">
+        <div className="grid gap-12 md:gap-16 md:grid-cols-2 lg:grid-cols-4">
+          {/* Company Info */}
+          <div className="space-y-6">
+            <div className="flex items-baseline gap-3">
+              <span className="text-2xl font-bold tracking-tight" style={{ fontFamily: 'Kugile, sans-serif' }}>
+                Elite Network International
               </span>
             </div>
-            <p className="text-white/70 max-w-sm">
-              Specialist B2B removals, relocations and logistics services for healthcare,
-              contractors and enterprise logistics teams. Compliance‑driven, scalable,
-              nationwide.
+            <p className="text-white/80 leading-relaxed">
+              Your premier HR solutions partner since 2016. We connect exceptional talent with 
+              outstanding opportunities across Malta and UAE, building stronger organizations 
+              through innovative recruitment and HR services.
             </p>
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-4 pt-4">
               <a
-                aria-label="Instagram"
+                aria-label="LinkedIn"
                 href="#"
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="p-3 bg-white/10 hover:bg-yellow-500/20 hover:text-yellow-500 transition-all duration-300"
               >
-                <Instagram className="w-5 h-5" />
+                <Linkedin className="w-5 h-5" />
               </a>
               <a
                 aria-label="Facebook"
                 href="#"
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="p-3 bg-white/10 hover:bg-yellow-500/20 hover:text-yellow-500 transition-all duration-300"
               >
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                aria-label="LinkedIn"
+                aria-label="Instagram"
                 href="#"
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="p-3 bg-white/10 hover:bg-yellow-500/20 hover:text-yellow-500 transition-all duration-300"
               >
-                <Linkedin className="w-5 h-5" />
+                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </div>
 
+          {/* Services */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-widest mb-4 text-white/80">
-              Company
+            <h4 className="text-lg font-bold mb-6 text-yellow-500" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+              Our Services
             </h4>
-            <ul className="space-y-3">
-              <li>
-                <NavLink to="/about" className={linkClass}>
-                  About
-                </NavLink>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-yellow-500"></div>
+                <span className="text-white/80">Recruitment & Talent Acquisition</span>
               </li>
-              <li>
-                <NavLink to="/projects" className={linkClass}>
-                  Case Studies
-                </NavLink>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-yellow-500"></div>
+                <span className="text-white/80">Employee Outsourcing</span>
               </li>
-              <li>
-                <NavLink to="/services" className={linkClass}>
-                  Services
-                </NavLink>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-yellow-500"></div>
+                <span className="text-white/80">Training & Development</span>
               </li>
-              <li>
-                <NavLink to="/contact" className={linkClass}>
-                  Contact
-                </NavLink>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-yellow-500"></div>
+                <span className="text-white/80">HR Consulting</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-yellow-500"></div>
+                <span className="text-white/80">Job Placement Services</span>
               </li>
             </ul>
           </div>
 
+          {/* Contact Info */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-widest mb-4 text-white/80">
-              What we do
+            <h4 className="text-lg font-bold mb-6 text-yellow-500" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+              Contact Us
             </h4>
-            <ul className="space-y-3 text-white/70">
-              <li>Healthcare logistics & ward decants</li>
-              <li>Office & site relocations</li>
-              <li>Heavy/oversized item handling</li>
-              <li>Warehouse & inventory moves</li>
-              <li>Waste & clearance (licensed)</li>
-            </ul>
+            <div className="space-y-4">
+              <div>
+                <h5 className="text-white font-semibold mb-2">Malta Office</h5>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  Ananta, 35A, Luqa Briffa Street<br />
+                  Gzira, Malta<br />
+                  +356 79905609<br />
+                  +356 27 211 811<br />
+                  info@eniclusters.com
+                </p>
+              </div>
+              <div>
+                <h5 className="text-white font-semibold mb-2">UAE Office</h5>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  Sharjah Publishing Center<br />
+                  +971 52 7343 772<br />
+                  +971 52 7147 481<br />
+                  Info.uae@eniclusters.com
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold uppercase tracking-widest mb-4 text-white/80">
-              Start a project
+          {/* CTA */}
+          <div className="space-y-6">
+            <h4 className="text-lg font-bold text-yellow-500" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+              Ready to Get Started?
             </h4>
-            <p className="text-white/70">
-              Share scope, sites and timelines. We’ll propose a compliant, scalable
-              plan within one working day.
+            <p className="text-white/80 leading-relaxed">
+              Let's discuss your HR challenges and create a tailored solution that drives your business forward.
             </p>
-            <NavLink
-              to="/contact"
-              className="inline-flex items-center gap-3 text-white px-5 py-3 rounded-full text-sm font-medium uppercase tracking-wide transition-colors"
-              style={{ backgroundColor: '#45c4af' }}
-            >
-              Request consultation
-              <ArrowRight className="w-4 h-4" />
-            </NavLink>
+            <div className="space-y-3">
+              <button className="w-full px-6 py-3 bg-black border-2 border-yellow-500 text-yellow-500 font-bold uppercase tracking-wide hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300">
+                Get Started
+              </button>
+              <button className="w-full px-6 py-3 border border-yellow-500/50 text-yellow-500 font-semibold uppercase tracking-wide hover:bg-yellow-500/10 transition-colors duration-300">
+                View Jobs
+              </button>
+            </div>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 text-sm flex flex-col md:flex-row gap-3 md:items-center md:justify-between text-white/60">
           <p>
-            © {new Date().getFullYear()} Big Logistics. All rights reserved.
+            © {new Date().getFullYear()} Elite Network International. All rights reserved.
           </p>
           <div className="flex gap-4">
             <a href="#" className={linkClass}>
@@ -121,6 +143,7 @@ export default function Footer() {
               Cookies
             </a>
           </div>
+        </div>
         </div>
       </div>
     </footer>

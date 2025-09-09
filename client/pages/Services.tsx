@@ -32,13 +32,13 @@ export default function Services() {
         className="relative h-[40vh] md:h-[50vh] flex items-end"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,0)), url('/New-Project-2024-10-02T175135.156.png')",
+            "linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,0)), url('/guillaume-techer-XvNPUh6fWVk-unsplash-1024x683.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="container mx-auto px-6 sm:px-8 lg:px-16 pb-8 md:pb-10">
-          <h1 className="text-4xl md:text-6xl text-white font-medium">
+          <h1 className="text-4xl md:text-6xl text-white font-medium" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
             Services
           </h1>
           <p className="text-white/70 mt-4 max-w-2xl text-lg">
@@ -54,9 +54,9 @@ export default function Services() {
             {services.map((s, i) => (
               <div
                 key={i}
-                className="p-6 rounded-2xl border border-black/10 hover:shadow-sm transition-shadow"
+                className="p-6  border border-black/10 hover:shadow-sm transition-shadow"
               >
-                <h3 className="text-xl font-medium mb-2" style={{ color: '#45c4af' }}>
+                <h3 className="text-xl font-medium mb-2 text-yellow-500" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
                   {s.title}
                 </h3>
                 <p className="text-lufte-gray-dark/70 leading-relaxed">

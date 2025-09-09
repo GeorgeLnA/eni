@@ -5,7 +5,8 @@ import Footer from "@/components/Footer";
 
 function navLinkClass(isActive: boolean) {
   const base =
-    "px-5 py-2.5 text-white text-sm font-medium uppercase rounded-xl transition-opacity";
+    "px-5 py-2.5 text-white text-sm font-medium uppercase transition-opacity";
+  const fontStyle = { fontFamily: 'Uni Sans, sans-serif' };
   return isActive ? `${base} opacity-100 underline underline-offset-4` : `${base} opacity-90 hover:opacity-70`;
 }
 
@@ -25,69 +26,70 @@ export default function Layout() {
   }, []);
   return (
     <div className="min-h-screen bg-white font-outfit">
-      <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-center p-3 transition-colors duration-300 ${scrolled ? "bg-black/80 backdrop-blur-sm" : ""}`}>
+      <nav className="fixed top-0 left-0 right-0 z-40 flex items-center justify-center p-4 bg-black">
         <div className="flex items-center justify-between w-full max-w-[1680px] px-4 sm:px-6">
           <NavLink
             to="/"
             onClick={close}
-            className={`flex items-baseline gap-2 text-white ${scrolled ? "" : "mix-blend-difference"}`}
+            className="flex items-end gap-2 sm:gap-3 text-white"
           >
-            <span className="text-2xl font-semibold tracking-tight">
-              Big Logistics
-            </span>
-            <span className="text-sm uppercase tracking-widest text-white px-2 py-0.5 rounded" style={{ backgroundColor: '#45c4af' }}>
-              B2B
+            <img 
+              src="/20250909_1640_Enhanced Gold Emblem_remix_01k4qj00e0evtvqq8yd1k1xkpw.png" 
+              alt="ENI Logo" 
+              className="w-8 h-8 sm:w-10 sm:h-10 object-contain flex-shrink-0"
+            />
+            <span className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-wide leading-tight" style={{ fontFamily: 'Kugile, sans-serif' }}>
+              Elite Network International
             </span>
           </NavLink>
 
-          <div className={`hidden md:flex items-center rounded-2xl p-1 ${scrolled ? "" : "mix-blend-difference"}`}>
+          <div className={`hidden md:flex items-center p-1 ${scrolled ? "" : "mix-blend-difference"}`}>
             <NavLink
               to="/"
               className={({ isActive }) => navLinkClass(isActive)}
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
               end
             >
               Home
             </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) => navLinkClass(isActive)}
+            <button
+              className={navLinkClass(false)}
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
             >
               About
-            </NavLink>
-            <NavLink
-              to="/projects"
-              className={({ isActive }) => navLinkClass(isActive)}
+            </button>
+            <button
+              className={navLinkClass(false)}
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
             >
               <span className="flex items-center gap-1">
-                Case Studies <Plus className="w-4 h-4 opacity-60" />
+                Jobs <Plus className="w-4 h-4 opacity-60" />
               </span>
-            </NavLink>
-            <NavLink
-              to="/services"
-              className={({ isActive }) => navLinkClass(isActive)}
+            </button>
+            <button
+              className={navLinkClass(false)}
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
             >
               Services
-            </NavLink>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) => navLinkClass(isActive)}
+            </button>
+            <button
+              className={navLinkClass(false)}
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
             >
               Contact
-            </NavLink>
+            </button>
           </div>
 
           <div className="hidden md:flex">
-            <NavLink
-              to="/contact"
-              className="flex items-center rounded-2xl px-6 py-3 text-white text-sm font-medium uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] mix-blend-normal"
-              style={{ backgroundColor: '#45c4af' }}
+            <button
+              className="flex items-center px-6 py-3 text-yellow-500 text-sm font-medium uppercase bg-black border-2 border-yellow-500 hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300"
             >
-              Request consultation
-            </NavLink>
+              Get Started
+            </button>
           </div>
 
           <button
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-white/15 text-white"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 border border-white/15 text-white flex-shrink-0"
             aria-label="Open menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -98,57 +100,70 @@ export default function Layout() {
         </div>
 
         {/* Mobile menu */}
-        {open && (
-          <div
-            id="mobile-menu"
-            className="md:hidden fixed top-16 left-0 right-0 border-t border-white/10 bg-black/90 backdrop-blur-md z-50"
-          >
-            <div className="px-4 py-3 flex flex-col gap-1">
-              <NavLink
-                to="/"
+        <div
+          id="mobile-menu"
+          className={`md:hidden fixed top-0 left-0 right-0 bg-black/95 backdrop-blur-md z-50 transition-all duration-300 ease-in-out ${
+            open ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+          }`}
+        >
+          <div className="pt-16 px-4 py-3 flex flex-col gap-1">
+            {/* Close button */}
+            <div className="flex justify-end mb-4">
+              <button
                 onClick={close}
-                className="px-4 py-3 rounded-lg text-white uppercase hover:bg-white/10"
+                className="inline-flex items-center justify-center w-10 h-10 border border-white/15 text-white hover:bg-white/10 transition-colors"
+                aria-label="Close menu"
               >
-                Home
-              </NavLink>
-              <NavLink
-                to="/about"
-                onClick={close}
-                className="px-4 py-3 rounded-lg text-white uppercase hover:bg-white/10"
-              >
-                About
-              </NavLink>
-              <NavLink
-                to="/projects"
-                onClick={close}
-                className="px-4 py-3 rounded-lg text-white uppercase hover:bg-white/10"
-              >
-                Case Studies
-              </NavLink>
-              <NavLink
-                to="/services"
-                onClick={close}
-                className="px-4 py-3 rounded-lg text-white uppercase hover:bg-white/10"
-              >
-                Services
-              </NavLink>
-              <NavLink
-                to="/contact"
-                onClick={close}
-                className="px-4 py-3 rounded-lg text-white uppercase hover:bg-white/10"
-              >
-                Contact
-              </NavLink>
-              <NavLink
-                to="/contact"
-                onClick={close}
-                className="mt-2 px-4 py-3 rounded-xl border border-white/15 text-white uppercase text-sm text-center"
-              >
-                Request consultation
-              </NavLink>
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Menu items */}
+            <NavLink
+              to="/"
+              onClick={close}
+              className="px-4 py-3 text-center text-white uppercase hover:bg-white/10 transition-colors"
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
+            >
+              Home
+            </NavLink>
+            <button
+              onClick={close}
+              className="px-4 py-3 text-center text-white uppercase hover:bg-white/10 transition-colors"
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
+            >
+              About
+            </button>
+            <button
+              onClick={close}
+              className="px-4 py-3 text-center text-white uppercase hover:bg-white/10 transition-colors"
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
+            >
+              Jobs
+            </button>
+            <button
+              onClick={close}
+              className="px-4 py-3 text-center text-white uppercase hover:bg-white/10 transition-colors"
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
+            >
+              Services
+            </button>
+            <button
+              onClick={close}
+              className="px-4 py-3 text-center text-white uppercase hover:bg-white/10 transition-colors"
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
+            >
+              Contact
+            </button>
+            <button
+              onClick={close}
+              className="mt-2 px-4 py-3 text-yellow-500 uppercase text-sm text-center bg-black border-2 border-yellow-500 hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all duration-300"
+              style={{ fontFamily: 'Uni Sans, sans-serif' }}
+            >
+              Request consultation
+            </button>
             </div>
           </div>
-        )}
       </nav>
 
       <div className="pt-0">
