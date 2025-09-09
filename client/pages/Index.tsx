@@ -203,7 +203,7 @@ export default function Index() {
           </div>
           
            {/* Right Side - Compact Content & Form */}
-           <div className="w-full lg:w-2/5 h-1/3 sm:h-1/2 lg:h-4/5 flex flex-col justify-start lg:justify-center px-4 lg:px-8 mt-8 sm:mt-10 lg:mt-0">
+           <div className="w-full lg:w-2/5 h-1/3 sm:h-1/2 lg:h-3/5 flex flex-col justify-start lg:justify-center px-4 lg:px-8 mt-8 sm:mt-10 lg:mt-8">
              {/* Main Content */}
              <div className="mb-6 hidden lg:block">
                <div 
