@@ -156,7 +156,7 @@ export default function Index() {
         <div className="absolute inset-0 flex flex-col lg:flex-row items-center">
            {/* Left Side - Image with Hover Effect */}
            <div 
-             className="w-full lg:w-3/5 h-1/2 lg:h-4/5 bg-black ml-0 relative overflow-hidden group cursor-pointer opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
+             className="w-full lg:w-3/5 h-1/3 sm:h-2/5 lg:h-4/5 bg-black ml-0 relative overflow-hidden group cursor-pointer opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
              style={{ 
                marginTop: '2%',
                animationDelay: '5.2s',
@@ -187,14 +187,24 @@ export default function Index() {
                 <div className="text-sm text-white/80">Jobs Placed</div>
               </div>
             </div>
+            
+            {/* Mobile-only text overlay on image */}
+            <div className="absolute inset-0 flex items-center justify-center lg:hidden">
+              <div className="text-center px-4">
+                <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-2" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+                  <span className="text-white">Your Gateway to</span>
+                  <span className="block text-yellow-500">Elite Careers</span>
+                </h1>
+              </div>
+            </div>
           </div>
           
            {/* Right Side - Compact Content & Form */}
-           <div className="w-full lg:w-2/5 h-1/2 lg:h-4/5 flex flex-col justify-center px-4 lg:px-8" style={{ marginTop: '2%' }}>
+           <div className="w-full lg:w-2/5 h-2/3 sm:h-3/5 lg:h-4/5 flex flex-col justify-center px-4 lg:px-8 mt-4 sm:mt-6 lg:mt-0" style={{ marginTop: '2%' }}>
              {/* Main Content */}
              <div className="mb-6">
                <div 
-                 className="opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
+                 className="opacity-0 transform translate-x-8 transition-all duration-800 ease-out hidden lg:block"
         style={{
                    animationDelay: '5.5s',
                    animation: 'fadeInLeft 0.8s ease-out 5.5s forwards'
