@@ -106,9 +106,19 @@ export default function Layout() {
             open ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
           }`}
         >
-          <div className="pt-16 px-4 py-3 flex flex-col gap-1">
-            {/* Close button */}
-            <div className="flex justify-end mb-4">
+          <div className="px-4 py-3 flex flex-col gap-1">
+            {/* Header with logo and close button */}
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-end gap-2">
+                <img 
+                  src="/20250909_1640_Enhanced Gold Emblem_remix_01k4qj00e0evtvqq8yd1k1xkpw.png" 
+                  alt="ENI Logo" 
+                  className="w-6 h-6 object-contain flex-shrink-0"
+                />
+                 <span className="text-white font-semibold tracking-wide -mb-1" style={{ fontFamily: 'Kugile, sans-serif' }}>
+                   Elite Network International
+                 </span>
+              </div>
               <button
                 onClick={close}
                 className="inline-flex items-center justify-center w-10 h-10 border border-white/15 text-white hover:bg-white/10 transition-colors"

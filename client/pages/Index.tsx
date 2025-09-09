@@ -156,7 +156,7 @@ export default function Index() {
         <div className="absolute inset-0 flex flex-col lg:flex-row items-center">
            {/* Left Side - Image with Hover Effect */}
            <div 
-             className="w-full lg:w-3/5 h-1/3 sm:h-2/5 lg:h-4/5 bg-black ml-0 relative overflow-hidden group cursor-pointer opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
+             className="w-full lg:w-3/5 h-2/5 sm:h-1/2 lg:h-4/5 bg-black ml-0 relative overflow-hidden group cursor-pointer opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
              style={{ 
                marginTop: '2%',
                animationDelay: '5.2s',
@@ -189,20 +189,23 @@ export default function Index() {
             </div>
             
             {/* Mobile-only text overlay on image */}
-            <div className="absolute inset-0 flex items-center justify-center lg:hidden">
-              <div className="text-center px-4">
-                <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-2" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
+            <div className="absolute inset-0 flex items-end justify-start lg:hidden">
+              <div className="text-left px-4 pb-8">
+                <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-3" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
                   <span className="text-white">Your Gateway to</span>
                   <span className="block text-yellow-500">Elite Careers</span>
                 </h1>
+                <p className="text-sm sm:text-base text-white/80 leading-relaxed">
+                  Connecting exceptional talent with premier opportunities across Malta and UAE.
+                </p>
               </div>
             </div>
           </div>
           
            {/* Right Side - Compact Content & Form */}
-           <div className="w-full lg:w-2/5 h-2/3 sm:h-3/5 lg:h-4/5 flex flex-col justify-center px-4 lg:px-8 mt-4 sm:mt-6 lg:mt-0" style={{ marginTop: '2%' }}>
+           <div className="w-full lg:w-2/5 h-1/3 sm:h-1/2 lg:h-4/5 flex flex-col justify-start lg:justify-center px-4 lg:px-8 mt-8 sm:mt-10 lg:mt-0">
              {/* Main Content */}
-             <div className="mb-6">
+             <div className="mb-6 hidden lg:block">
                <div 
                  className="opacity-0 transform translate-x-8 transition-all duration-800 ease-out hidden lg:block"
         style={{
@@ -216,7 +219,7 @@ export default function Index() {
             </h1>
                </div>
                <div 
-                 className="opacity-0 transform translate-x-8 transition-all duration-800 ease-out"
+                 className="opacity-0 transform translate-x-8 transition-all duration-800 ease-out hidden lg:block"
                  style={{ 
                    animationDelay: '5.7s',
                    animation: 'fadeInLeft 0.8s ease-out 5.7s forwards'
@@ -228,7 +231,7 @@ export default function Index() {
                </div>
               
                {/* Key Points */}
-               <div className="space-y-2 mb-4">
+               <div className="space-y-2 mb-4 hidden lg:block">
                  <div 
                    className="opacity-0 transform translate-x-8 transition-all duration-600 ease-out"
                    style={{ 
@@ -734,7 +737,7 @@ export default function Index() {
               {
                 name: "Kenneth Azzopardi",
                 company: "Finestral",
-                testimonial: "Professional, reliable, and results-driven. ENI has become our go-to partner for all HR and recruitment needs. Highly recommended!",
+                testimonial: "Professional, reliable, and results-driven. ENI has become our go-to partner for all HR and recruitment needs. Their expertise has been exceptional. Highly recommended!",
                 rating: 5
               }
             ].map((testimonial, index) => (
