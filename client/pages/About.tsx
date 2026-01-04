@@ -13,10 +13,10 @@ export default function About() {
       >
         <div className="container mx-auto px-6 sm:px-8 lg:px-16 pb-8 md:pb-12">
           <h1 className="text-4xl md:text-6xl text-white font-medium leading-tight" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
-            About Elite Network International
+            About INE
           </h1>
           <p className="text-white/70 mt-4 max-w-2xl text-lg">
-            Welcome to Elite Network International ENI – Your Premier HR Solutions Provider. 
+            Welcome to INE – Your Premier HR Solutions Provider. 
             Established in 2016, we have quickly emerged as a leading Recruitment and HR service provider.
           </p>
         </div>
@@ -30,7 +30,7 @@ export default function About() {
               Our Story
             </h2>
             <p className="text-gray-300 leading-relaxed">
-              Established in 2016, Elite Network International ENI has quickly emerged as a leading 
+              Established in 2016, INE has quickly emerged as a leading 
               Recruitment and HR service provider in Malta. As a C 76838 certified company, we provide 
               innovative and tailored solutions for recruitment, talent management, training, and consulting, 
               building long-lasting partnerships based on trust, integrity, and mutual respect.

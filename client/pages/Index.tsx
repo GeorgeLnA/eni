@@ -177,7 +177,7 @@ export default function Index() {
             {/* Floating Elements on Hover */}
             <div className="absolute top-8 left-8 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">
               <div className="bg-yellow-500/90 text-black px-4 py-2 font-bold text-sm" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
-                ELITE NETWORK INTERNATIONAL
+                INE
               </div>
             </div>
             
@@ -342,7 +342,7 @@ export default function Index() {
                  <span className="text-yellow-500">HR Solutions</span>
             </h2>
                <p className="text-lg text-gray-300 leading-relaxed">
-                 At ENI, we understand the critical importance of human resources in driving the success of organizations. 
+                 At INE, we understand the critical importance of human resources in driving the success of organizations. 
                  As a premier provider of HR solutions and job services, we offer innovative and tailored solutions for 
                  recruitment, talent management, training, and consulting.
                </p>
@@ -557,23 +557,23 @@ export default function Index() {
         </div>
       </section>
 
-      {/* About ENI Section */}
+      {/* About INE Section */}
       <section className="relative bg-black py-20 z-20">
         <div className="container mx-auto px-6 sm:px-8 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <RevealOnScroll direction="left" delay={200} duration={800}>
               <div>
                 <h2 className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-8" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
-                  About ENI
+                  About INE
                 </h2>
               <div className="space-y-6 text-gray-300 leading-relaxed">
                 <p className="text-lg">
-                  At ENI, we understand the critical importance of human resources in driving the success of organizations. 
+                  At INE, we understand the critical importance of human resources in driving the success of organizations. 
                   As a premier provider of HR solutions and job services, we offer innovative and tailored solutions for 
                   recruitment, talent management, training, and consulting.
                 </p>
                 <p className="text-lg">
-                  Established in 2016, Elite Network International ENI has quickly emerged as a leading Recruitment and HR 
+                  Established in 2016, INE has quickly emerged as a leading Recruitment and HR 
                   service provider in Malta. As a C 76838 certified company, we provide innovative and tailored solutions 
                   for recruitment, talent management, training, and consulting, building long-lasting partnerships based on 
                   trust, integrity, and mutual respect.
@@ -590,7 +590,7 @@ export default function Index() {
               <div className="relative">
                 <img 
                   src="/Gemini_Generated_Image_r057e4r057e4r057.png" 
-                  alt="About ENI"
+                  alt="About INE"
                   className="w-full h-96 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -658,60 +658,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Founder's Message Section */}
-      <section className="relative bg-black py-20 z-20">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-16">
-          <RevealOnScroll direction="up" delay={200} duration={800}>
-            <div className="bg-black border-2 border-yellow-500 p-12 lg:p-16">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-              {/* Founder Image */}
-              <div className="lg:col-span-1">
-                <div className="relative">
-                  <img 
-                    src="/aaaaa-6-1024x768.png" 
-                    alt="Mu Abusaada - Founder"
-                    className="w-full h-80 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                </div>
-              </div>
-              
-              {/* Founder's Message */}
-              <div className="lg:col-span-2">
-                <h2 className="text-4xl lg:text-5xl font-bold text-yellow-500 mb-8" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
-                  Founder's Message
-                </h2>
-                <div className="space-y-6 text-white leading-relaxed">
-                  <p className="text-lg">
-                    Transparency in networking is your key to hidden resources, the main tool for driving your brand 
-                    successfully opening resources and opportunities. For it is your transparency in presenting your 
-                    services, and demands.
-                  </p>
-                  <p className="text-lg">
-                    Our aim at ENI is clearly understanding our client's organization's recruitment needs and objectives, 
-                    including the desired skills and qualifications of the candidates they seek.
-                  </p>
-                  <p className="text-lg">
-                    Our mission at ENI is making the recruitment process unchallenging, straightforward, and beneficiary 
-                    through our headhunting and shortlisting candidates.
-                  </p>
-                </div>
-                <div className="mt-8 pt-6 border-t border-yellow-500/30">
-                  <h3 className="text-2xl font-bold text-yellow-500 mb-2" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
-                    Mu Abusaada
-                  </h3>
-                  <p className="text-white/80 text-lg">
-                    Founder, Chief Executive Officer
-                  </p>
-                </div>
-              </div>
-            </div>
-            </div>
-          </RevealOnScroll>
-        </div>
-      </section>
-
-
       {/* Testimonials Section */}
       <section className="relative bg-black py-20 z-20">
         <div className="container mx-auto px-6 sm:px-8 lg:px-16">
@@ -725,19 +671,19 @@ export default function Index() {
               {
                 name: "John Camilleri",
                 company: "Mile-End Services Limited",
-                testimonial: "ENI has been instrumental in helping us find the right talent for our organization. Their recruitment process is thorough and their candidates are always well-qualified.",
+                testimonial: "INE has been instrumental in helping us find the right talent for our organization. Their recruitment process is thorough and their candidates are always well-qualified.",
                 rating: 5
               },
               {
                 name: "David Borg",
                 company: "Welbee's",
-                testimonial: "The team at ENI understands our business needs perfectly. They've consistently delivered excellent candidates who fit our company culture and requirements.",
+                testimonial: "The team at INE understands our business needs perfectly. They've consistently delivered excellent candidates who fit our company culture and requirements.",
                 rating: 5
               },
               {
                 name: "Kenneth Azzopardi",
                 company: "Finestral",
-                testimonial: "Professional, reliable, and results-driven. ENI has become our go-to partner for all HR and recruitment needs. Their expertise has been exceptional. Highly recommended!",
+                testimonial: "Professional, reliable, and results-driven. INE has become our go-to partner for all HR and recruitment needs. Their expertise has been exceptional. Highly recommended!",
                 rating: 5
               }
             ].map((testimonial, index) => (
@@ -794,14 +740,14 @@ export default function Index() {
       </section>
 
 
-      {/* Why Choose ENI */}
+      {/* Why Choose INE */}
       <section className="relative bg-black py-12 sm:py-16 lg:py-20 z-20">
         <div className="container mx-auto px-6 sm:px-8 lg:px-16">
           <RevealOnScroll direction="up" delay={200} duration={800}>
           <div className="max-w-4xl mb-16">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight mb-6" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
                 <span className="text-white">Why Choose </span>
-                <span className="text-yellow-500">Elite Network International</span>
+                <span className="text-yellow-500">INE</span>
             </h2>
               <p className="text-lg lg:text-2xl text-gray-300 font-light leading-relaxed">
                 Over 10 years' experience, friendly uniformed teams and transparent pricing. Local
@@ -928,22 +874,6 @@ export default function Index() {
                       <span className="text-white/90">{benefit}</span>
                     </div>
                   ))}
-                </div>
-
-                {/* Contact Info */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-white/80">
-                    <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <span>+356 79905609 | +356 27 211 811</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-white/80">
-                    <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <span>info@eniclusters.com</span>
-                  </div>
                 </div>
               </div>
               </RevealOnScroll>

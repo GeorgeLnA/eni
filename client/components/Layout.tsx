@@ -35,11 +35,11 @@ export default function Layout() {
           >
             <img 
               src="/20250909_1640_Enhanced Gold Emblem_remix_01k4qj00e0evtvqq8yd1k1xkpw.png" 
-              alt="ENI Logo" 
+              alt="INE Logo" 
               className="w-8 h-8 sm:w-10 sm:h-10 object-contain flex-shrink-0"
             />
             <span className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-wide leading-tight" style={{ fontFamily: 'Kugile, sans-serif' }}>
-              Elite Network International
+              INE
             </span>
           </NavLink>
 
@@ -112,11 +112,11 @@ export default function Layout() {
               <div className="flex items-end gap-2">
                 <img 
                   src="/20250909_1640_Enhanced Gold Emblem_remix_01k4qj00e0evtvqq8yd1k1xkpw.png" 
-                  alt="ENI Logo" 
+                  alt="INE Logo" 
                   className="w-6 h-6 object-contain flex-shrink-0"
                 />
                  <span className="text-white font-semibold tracking-wide -mb-1" style={{ fontFamily: 'Kugile, sans-serif' }}>
-                   Elite Network International
+                   INE
                  </span>
               </div>
               <button

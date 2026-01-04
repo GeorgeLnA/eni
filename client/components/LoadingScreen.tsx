@@ -10,7 +10,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [isRollingUp, setIsRollingUp] = useState(false);
   const [visibleChars, setVisibleChars] = useState(0);
   
-  const text = "ELITE NETWORK INTERNATIONAL";
+  const text = "INE";
 
   useEffect(() => {
     // Show text after 3.7 seconds
@@ -61,7 +61,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               transitionDelay: showText ? '0ms' : '0ms'
             }}
           >
-            ELITE NETWORK INTERNATIONAL
+            INE
           </span>
         </h1>
       </div>

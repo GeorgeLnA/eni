@@ -14,12 +14,12 @@ export default function Footer() {
       {/* Content Overlay */}
       <div className="relative z-10 bg-black/20 backdrop-blur-sm">
         <div className="container mx-auto px-6 sm:px-8 lg:px-16 py-16">
-        <div className="grid gap-12 md:gap-16 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:gap-16 md:grid-cols-2 lg:grid-cols-3">
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-baseline gap-3">
               <span className="text-2xl font-bold tracking-tight" style={{ fontFamily: 'Kugile, sans-serif' }}>
-                Elite Network International
+                INE
               </span>
             </div>
             <p className="text-white/80 leading-relaxed">
@@ -81,34 +81,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-bold mb-6 text-yellow-500" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
-              Contact Us
-            </h4>
-            <div className="space-y-4">
-              <div>
-                <h5 className="text-white font-semibold mb-2">Malta Office</h5>
-                <p className="text-white/80 text-sm leading-relaxed">
-                  Ananta, 35A, Luqa Briffa Street<br />
-                  Gzira, Malta<br />
-                  +356 79905609<br />
-                  +356 27 211 811<br />
-                  info@eniclusters.com
-                </p>
-              </div>
-              <div>
-                <h5 className="text-white font-semibold mb-2">UAE Office</h5>
-                <p className="text-white/80 text-sm leading-relaxed">
-                  Sharjah Publishing Center<br />
-                  +971 52 7343 772<br />
-                  +971 52 7147 481<br />
-                  Info.uae@eniclusters.com
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* CTA */}
           <div className="space-y-6">
             <h4 className="text-lg font-bold text-yellow-500" style={{ fontFamily: 'Uni Sans, sans-serif' }}>
@@ -130,7 +102,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/10 text-sm flex flex-col md:flex-row gap-3 md:items-center md:justify-between text-white/60">
           <p>
-            © {new Date().getFullYear()} Elite Network International. All rights reserved.
+            © {new Date().getFullYear()} INE. All rights reserved.
           </p>
           <div className="flex gap-4">
             <a href="#" className={linkClass}>
